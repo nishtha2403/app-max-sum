@@ -10,7 +10,7 @@ function App() {
   
   const onSubmit = () => {
     const expressionArray = enteredExpression.split(',');
-    const sortedArray = expressionArray.sort();
+    const sortedArray = expressionArray.sort((a,b) => a-b);
     const num1 = parseInt(sortedArray[sortedArray.length - 1]) || 0;
     const num2 = parseInt(sortedArray[sortedArray.length - 2]) || 0;
     setExpressionArray(expressionArray);
@@ -21,32 +21,36 @@ function App() {
 
   return (
     <div className="App">
-      <div className='leftPanel'>
-      {
-            expressionArray.length > 0 && 
-            <div className='container'>
-              {
-                expressionArray.map(exp => <p>{exp}</p>)
-              }
-            </div>
-      }
-        
-      </div>
-      <div className='rightPanel'>
-        <div className='inputPanel'>
-          <input 
-            type="text"
-            value={enteredExpression}
-            onChange={(e) => {
-              setEnteredExpression(e.target.value);
-            }}
-          />
-          <button onClick={onSubmit}>Submit</button>
+      <h1>Find Max Sum of two numbers!</h1>
+      <div className='panel'>
+        <div className='leftPanel'>
+        {
+              expressionArray.length > 0 && 
+              <div className='container'>
+                {
+                  expressionArray.map(exp => <p>{exp}</p>)
+                }
+              </div>
+        }
+          
         </div>
-        <div className='outputPanel'>
-          {
-            expressionArray.length > 0 && <h4>Maximum sum of two numbers ({num1}, {num2}) are {maxSum}</h4>
-          }
+        <div className='rightPanel'>
+          <div className='inputPanel'>
+            <input 
+              type="text"
+              placeholder='Enter numbers...'
+              value={enteredExpression}
+              onChange={(e) => {
+                setEnteredExpression(e.target.value);
+              }}
+            />
+            <button onClick={onSubmit}>Submit</button>
+          </div>
+          <div className='outputPanel'>
+            {
+              expressionArray.length > 0 && <h4>Maximum sum of two numbers ({num1}, {num2}) are {maxSum}</h4>
+            }
+          </div>
         </div>
       </div>
     </div>
